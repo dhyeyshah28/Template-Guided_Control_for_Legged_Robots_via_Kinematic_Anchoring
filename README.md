@@ -1,0 +1,2 @@
+# Template-Guided_Control_for_Legged_Robots_via_Kinematic_Anchoring
+MEAM5170 Final Project
