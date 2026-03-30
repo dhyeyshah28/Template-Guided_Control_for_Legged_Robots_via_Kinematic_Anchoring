@@ -10,6 +10,14 @@
 
 <div align="center">
 
+
+<p float="left">
+<img src="Images/pronk.png" alt="Competition Stack" width="40%" />
+  <img src="Images/bound.png" alt="Robot Setup" width="40%" />
+</p>
+
+</div>
+
 **Full Control Pipeline:**
 Slot Hopper Template → Hybrid Correction → Kinematic Anchoring → IK Mapping → PyBullet Tracking
 
@@ -187,6 +195,13 @@ The full pipeline runs from template simulation (Python + SciPy) through hybrid 
 ---
 
 ## 🔬 Technical Approach
+
+<div align="center">
+<p float="left">
+  <img src="Images/Figure_1.png" alt="Block Detection Simulation" width="45%" />
+  <img src="Images/NEW1.png" alt="Block Detection Hardware" width="45%" />
+</p>
+</div>
 
 ### 1. Slot Hopper Template Dynamics
 
@@ -525,6 +540,13 @@ All template trajectories are resampled to PyBullet's timestep (1/240 s). A sync
 ---
 
 ## 📊 Performance Results
+
+<div align="center">
+<p float="left">
+  <img src="Images/poster_f25.png" alt="Block Detection Simulation" width="50%" />
+</p>
+</div>
+
 
 ### Template Simulation Quality
 
