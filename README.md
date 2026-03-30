@@ -198,7 +198,7 @@ The full pipeline runs from template simulation (Python + SciPy) through hybrid 
 
 <div align="center">
 <p float="left">
-  <img src="Images/Figure_1.png" alt="Block Detection Simulation" width="42%" />
+  <img src="Images/Figure_1.png" alt="Block Detection Simulation" width="38%" />
   <img src="Images/NEW1.png" alt="Block Detection Hardware" width="45%" />
 </p>
 </div>
@@ -543,7 +543,7 @@ All template trajectories are resampled to PyBullet's timestep (1/240 s). A sync
 
 <div align="center">
 <p float="left">
-  <img src="Images/poster_f25.png" alt="Block Detection Simulation" width="70%" />
+  <img src="Images/poster_f25.png" alt="Block Detection Simulation" width="80%" />
 </p>
 </div>
 
