@@ -198,7 +198,7 @@ The full pipeline runs from template simulation (Python + SciPy) through hybrid 
 
 <div align="center">
 <p float="left">
-  <img src="Images/Figure_1.png" alt="Block Detection Simulation" width="45%" />
+  <img src="Images/Figure_1.png" alt="Block Detection Simulation" width="42%" />
   <img src="Images/NEW1.png" alt="Block Detection Hardware" width="45%" />
 </p>
 </div>
@@ -543,7 +543,7 @@ All template trajectories are resampled to PyBullet's timestep (1/240 s). A sync
 
 <div align="center">
 <p float="left">
-  <img src="Images/poster_f25.png" alt="Block Detection Simulation" width="50%" />
+  <img src="Images/poster_f25.png" alt="Block Detection Simulation" width="70%" />
 </p>
 </div>
 
@@ -820,26 +820,6 @@ Challenges encountered:
 - QP solver failed to converge during flight phases (no contact constraints)
 - PyBullet's contact model introduces significant friction/slip errors not present in template
 
-**Lesson:**  Dynamic anchoring requires careful tuning of contact models and solver parameters.
-
-### 3. Shared Leg Parameters Between Template and Anchor
-
-Early designs used identical link lengths for template and anchor (ρ = L₁ + L₂). This caused:
-- Unrealistic anchor geometry (too short for Mini Cheetah morphology)
-- Poor joint angle distributions (knees always near singularities)
-- Inability to scale to real hardware
-
-**Lesson:** Template and anchor should have independent morphologies. The anchoring map must handle scaling differences gracefully.
-
-### 4. Aggressive Butterworth Filtering
-
-Overly aggressive low-pass filtering (cutoff = 5 Hz) removed event-related discontinuities but also:
-- Attenuated high-frequency components of the gait (rapid leg retraction during flight)
-- Introduced phase lag between template and anchor trajectories
-- Caused anchor feet to lag template touchdown/liftoff by 20–30 ms
-
-**Lesson:** Filter cutoff should preserve the fastest gait dynamics (10 Hz for pronking/bounding). Phase lag can be compensated with a feedforward time shift if necessary.
-
 ---
 
 ## 📚 Lessons Learned
@@ -870,33 +850,6 @@ Overly aggressive low-pass filtering (cutoff = 5 Hz) removed event-related disco
    - Closed-form two-link IK is fast (< 0.1 ms per leg) and deterministic
    - Singularity avoidance via distance clipping prevents failures
    - No need for iterative optimization or Jacobian pseudo-inverse
-
-### ⚠️ Challenges Encountered
-
-1. **Stance Leg Length Correction is Non-Obvious**
-   - Template dynamics enforce z_i = r_i during stance, making r_i compressed
-   - Extracting physical leg extension requires reconstructing r_corr = ρ (stance) vs. r (flight)
-   - **Lesson:** Hybrid models require careful post-processing to extract anchor-relevant variables
-
-2. **PyBullet Contact Models Introduce Sim-to-Sim Gap**
-   - Template assumes rigid ground contact; PyBullet has compliance, friction, and slip
-   - Small contact penetration depths (1–2 mm) cause joint wobble
-   - **Lesson:** Stabilizing regulators are essential even for "exact" template tracking
-
-3. **Minimum-Jerk Smoothing is Necessary**
-   - Raw foot targets exhibit high-frequency noise from event interpolation
-   - PD joint control amplifies this noise, causing vibrations
-   - **Lesson:** Always smooth target trajectories before feeding to low-level controllers
-
-4. **Temporal Synchronization is Critical**
-   - Template trajectories are variable-timestep (event-driven)
-   - PyBullet requires fixed-timestep (1/240 s)
-   - **Lesson:** Resample all trajectories to a common timebase before anchoring
-
-5. **Morphological Differences Accumulate Over Time**
-   - Anchor's heavier legs slowly drift from template energy levels
-   - Vertical oscillation amplitude decays by ~5% over 15 seconds
-   - **Lesson:** Closed-loop energy regulation (not just feedforward tracking) may be needed for long-duration gaits
 
 ---
 
