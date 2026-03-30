@@ -622,7 +622,7 @@ The full pipeline was tested over 15-second rollouts (3600 frames @ 240 Hz):
 
 <div align="center">
 <p float="left">
-  <img src="Images/pronkrob.png" alt="Block Detection Simulation" width="20%" />
+  <img src="Images/pronkrob.png" alt="Block Detection Simulation" width="22%" />
   <img src="Images/boundrob.png" alt="Block Detection Hardware" width="20%" />
 </p>
 </div>
